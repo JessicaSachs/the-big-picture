@@ -1,11 +1,13 @@
-import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
 import Counter from '../src/components/Counter.vue'
 
+const counterSelector = '[data-testid="counter"]'
+const incrementSelector = 'button[data-testid="increment"]'
+const decrementSelector = 'button[data-testid="decrement"]'
+
 describe('<Counter />', () => {
-  it.only('renders', () => {
-    const wrapper = mount(<Counter initial={2} />)
-    expect(wrapper.text()).toContain('2')
+  it('renders', () => {
+    // see: https://on.cypress.io/mounting-vue
+    cy.mount(<Counter />)
   })
 
   it('should render the current count', () => {})
@@ -18,7 +20,15 @@ describe('<Counter />', () => {
 
   describe('increment', () => {
     it('has an increment button', () => {})
-    it('clicking plus increments the current value', () => { })
+    it('clicking plus increments the current value', () => {
+      cy.mount(<Counter data-testid="counter" />)
+        .get(incrementSelector).click()
+        .get(counterSelector).should('contain.text', 1)
+        .get(incrementSelector).click()
+        .get(counterSelector).should('contain.text', 2)
+        .get(incrementSelector).click()
+        .get(counterSelector).should('contain.text', 3)
+    })
   })
 
   describe('decrement', () => {

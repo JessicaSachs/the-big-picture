@@ -21,7 +21,7 @@ export default {
 
 <template>
   <div class="accordion mb-2 border">
-    <div class="cursor-pointer p-2" @click="toggleAccordion">
+    <div data-testid="accordion-header" class="cursor-pointer p-2" @click="toggleAccordion">
       <slot name="header">
         {{ title }}
       </slot>

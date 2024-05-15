@@ -40,19 +40,18 @@ function onTabChanged(tab: Tab) {
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat explicabo at ex vero vel quo aliquam, assumenda
       odit exercitationem voluptatum deserunt error tempore sint, perspiciatis dolorum atque veniam voluptas fuga.
     </Card>
-    <ProductCard
-      description="A ProductCard component" price="$10" rating="⭐️⭐️⭐️⭐️⭐️"
-      img-src="https://via.placeholder.com/150" alt="A placeholder image"
-    />
+    <ProductCard description="A ProductCard component" price="$10" rating="⭐️⭐️⭐️⭐️⭐️"
+      img-src="https://via.placeholder.com/150" alt="A placeholder image" />
   </div>
 
   <div class="pb-8">
     <Tabs :tabs="[{ label: 'Show All' }, { label: 'Auction' }, { label: 'Buy Now' }]" @change="onTabChanged" />
   </div>
 
-  <div class="mx-auto max-w-800px resize overflow-auto border-1 pb-8">
+  <div class="mx-auto max-w-800px resize overflow-auto pb-8">
     <Accordion title="Accordion Header via the Title prop">
       Content within the accordion
+      
       {{ faker.lorem.paragraphs(5) }}
     </Accordion>
 

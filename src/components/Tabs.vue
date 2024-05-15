@@ -14,7 +14,7 @@ const emit = defineEmits<{
   change: [tab: Tab]
 }>()
 
-const { state, next, prev } = useCycle(props.tabs)
+const { state, next, prev, goTo } = useCycle(props.tabs)
 
 // Add event listener for keypress
 onMounted(() => {
@@ -27,13 +27,19 @@ function handleKeyPress(event: KeyboardEvent) {
   else if (event.key === 'ArrowLeft')
     emit('change', prev())
 }
+
+function onClick (tab: Tab, index: number) {
+  goTo(index)
+  emit('change', tab)
+}
 </script>
 
 <template>
   <div class="mx-auto w-80 flex flex-row items-center justify-center gap-2 border">
     <div
-      v-for="tab in tabs"
+      v-for="(tab, index) in tabs"
       :key="tab.label"
+      @click="onClick(tab, index)"
       class="px-2 py-1"
       :class="{ underline: tab.label === state.label }"
     >
